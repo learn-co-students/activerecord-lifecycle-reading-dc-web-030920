@@ -3,6 +3,9 @@ class Post < ActiveRecord::Base
   belongs_to :author
   validate :is_title_case 
 
+    # This makes the title Capitalized before saving it into the db
+    before_validation :make_title_case
+
   private
 
   def is_title_case
@@ -10,8 +13,16 @@ class Post < ActiveRecord::Base
       errors.add(:title, "Title must be in title case")
     end
   end
+  def email_author_about_post
+    # Not implemented.
+    # For more information: https://guides.rubyonrails.org/action_mailer_basics.html
+  end
+
 
   def make_title_case
-    self.title = self.title.titlecase
+    self.title = self.title.titlecase 
   end
+
+ 
+
 end
